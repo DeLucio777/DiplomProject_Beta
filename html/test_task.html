@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Тест для школьников с РАС</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 0; padding: 20px;
+    color: #333;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .question {
+    margin-bottom: 20px;
+  }
+  .question h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  label {
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    gap: 10px;
+  }
+  button {
+    flex: 1;
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+  }
+  .result {
+    margin-top: 24px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Тест для школьников с РАС</h1>
+
+  <div id="quiz">
+    <!-- Вопросы будут динамически вставляться сюда -->
+  </div>
+
+  <div class="buttons">
+    <button id="prevBtn" disabled>Назад</button>
+    <button id="nextBtn" disabled>Вперед</button>
+  </div>
+  <div class="buttons">
+        <button id="exitBtn">Выход из теста</button>
+  </div>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      text: "1. Какой из этих предметов — фрукт?",
+      options: [
+        { text: "Карандаш", correct: false },
+        { text: "Яблоко", correct: true },
+        { text: "Ручка", correct: false }
+      ]
+    },
+    {
+      text: "2. Что делает человек, когда улыбается?",
+      options: [
+        { text: "Он счастлив", correct: true },
+        { text: "Он злится", correct: false },
+        { text: "Он спит", correct: false }
+      ]
+    },
+    {
+      text: "3. Какое животное умеет летать?",
+      options: [
+        { text: "Кошка", correct: false },
+        { text: "Птица", correct: true },
+        { text: "Собака", correct: false }
+      ]
+    },
+    {
+      text: "4. Что нужно делать, если хочешь перейти дорогу?",
+      options: [
+        { text: "Бежать быстро", correct: false },
+        { text: "Посмотреть по сторонам", correct: true },
+        { text: "Закрыть глаза", correct: false }
+      ]
+    },
+    {
+      text: "5. Какой цвет получается при смешивании красного и синего?",
+      options: [
+        { text: "Фиолетовый", correct: true },
+        { text: "Зеленый", correct: false },
+        { text: "Оранжевый", correct: false }
+      ]
+    },
+    {
+      text: "6. Что делают растения, чтобы расти?",
+      options: [
+        { text: "Спят", correct: false },
+        { text: "Получают свет и воду", correct: true },
+        { text: "Бегают", correct: false }
+      ]
+    },
+    {
+      text: "7. Какой из этих предметов используется для письма?",
+      options: [
+        { text: "Ручка", correct: true },
+        { text: "Ложка", correct: false },
+        { text: "Мяч", correct: false }
+      ]
+    },
+    {
+      text: "8. Что нужно делать, если кто-то обиделся?",
+      options: [
+        { text: "Извиниться и поговорить", correct: true },
+        { text: "Игнорировать", correct: false },
+        { text: "Кричать", correct: false }
+      ]
+    },
+    {
+      text: "9. Какое время суток наступает после утра?",
+      options: [
+        { text: "День", correct: true },
+        { text: "Ночь", correct: false },
+        { text: "Вечер", correct: false }
+      ]
+    },
+    {
+      text: "10. Что помогает нам видеть в темноте?",
+      options: [
+        { text: "Уши", correct: false },
+        { text: "Глаза", correct: true },
+        { text: "Руки", correct: false }
+      ]
+    }
+  ];
+
+  const quizDiv = document.getElementById('quiz');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const exitBtn = document.getElementById('exitBtn');
+  const resultDiv = document.getElementById('result');
+
+  let currentQuestionIndex = 0;
+  const answers = new Array(questions.length).fill(null);
+
+  function renderQuestion(index) {
+    resultDiv.textContent = '';
+    const q = questions[index];
+
+    const optionsHtml = q.options.map((opt, i) => {
+      const checked = answers[index] === i ? 'checked' : '';
+      return `
+        <label>
+          <input type="radio" name="answer" value="${i}" ${checked} />
+          ${opt.text}
+        </label>`;
+    }).join('');
+
+    quizDiv.innerHTML = `
+      <div class="question">
+        <h3>${q.text}</h3>
+        ${optionsHtml}
+      </div>
+    `;
+
+    const inputs = quizDiv.querySelectorAll('input[name="answer"]');
+    inputs.forEach(input => {
+      input.addEventListener('change', () => {
+        answers[currentQuestionIndex] = parseInt(input.value);
+        nextBtn.disabled = false;
+      });
+    });
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = answers[index] === null;
+
+    if (index === questions.length - 1) {
+      nextBtn.textContent = 'Завершить тест';
+    } else {
+      nextBtn.textContent = 'Вперед';
+    }
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      renderQuestion(currentQuestionIndex);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (answers[currentQuestionIndex] === null) return;
+
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      renderQuestion(currentQuestionIndex);
+    } else {
+      let score = 0;
+      answers.forEach((ans, i) => {
+        if (ans !== null && questions[i].options[ans].correct) {
+          score++;
+        }
+      });
+      quizDiv.innerHTML = '';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      exitBtn.style.display = 'none';
+      resultDiv.textContent = `Вы ответили правильно на ${score} из ${questions.length} вопросов.`;
+    }
+  });
+
+  exitBtn.addEventListener('click', () => {
+    // Ваш код для выхода из теста здесь
+    alert('Выход из теста');
+  });
+
+  renderQuestion(currentQuestionIndex);
+</script>
+
+</body>
+</html>

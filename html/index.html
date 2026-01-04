@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Помощник - для людей с аутизмом</title>
+    <style>
+        /* 1. СБРОС И ФОН */
+        * { margin: 0; padding: 0; }
+        
+        body { 
+            font-family: Arial, sans-serif;
+            color: #000000;
+            line-height: 1.6;
+            height: 100vh;
+            background: #ffffff;
+        }
+        
+        /* 2. КНОПКИ В ШАПКЕ */
+        .header-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .header-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .login-btn {
+            background: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+        }
+        
+        .register-btn {
+            background: #000000;
+            color: #ffffff;
+            border: 2px solid #000000;
+        }
+        
+        /* 3. ЗАГОЛОВОК С ПОЯСНЕНИЕМ */
+        .title-container {
+            text-align: center;
+            margin-top: 60px;
+            padding: 0 20px;
+        }
+        
+        .title {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .target-audience {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #000000;
+            background: #ffffcc;
+            padding: 15px;
+            border: 2px solid #000000;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: bold;
+        }
+        
+        /* 4. КЛЮЧЕВЫЕ ПРИНЦИПЫ */
+        .principles {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .principle-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid #000000;
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+        
+        .principle-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+        
+        .principle-description {
+            color: #000000;
+            line-height: 1.5;
+        }
+        
+        /* 5. ДЛЯ КОГО ЭТОТ САЙТ - ЯСНЫЙ СПИСОК */
+        .for-whom {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 3px solid #000000;
+            background: #f0f8ff;
+        }
+        
+        .for-whom-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #000000;
+            text-decoration: underline;
+        }
+        
+        .audience-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .audience-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .audience-list li:before {
+            content: "•";
+            color: #000000;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        /* 6. КНОПКИ ДЕЙСТВИЙ */
+        .action-buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .action-btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 3px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        
+        .action-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        /* 7. ФУТЕР */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #dee2e6;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .disclaimer {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background: #fffacd;
+            border: 2px solid #000000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. КНОПКИ ВВЕРХУ -->
+    <div class="header-buttons">
+        <button class="header-btn login-btn" onclick="window.location.href='login.html'">
+            ВОЙТИ
+        </button>
+        <button class="header-btn register-btn" onclick="window.location.href='register.html'">
+            РЕГИСТРАЦИЯ
+        </button>
+    </div>
+    
+    <!-- 2. ЗАГОЛОВОК С ЯСНЫМ ОПИСАНИЕМ -->
+    <div class="title-container">
+        <h1 class="title">ПОМОЩНИК</h1>
+        <div class="target-audience">
+            ЭТОТ САЙТ СОЗДАН СПЕЦИАЛЬНО ДЛЯ ДЕТЕЙ И ПОДРОСТКОВ С АУТИЗМОМ
+        </div>
+    </div>
+    
+    <!-- 3. ДЛЯ КОГО ЭТОТ САЙТ - ЧЕТКИЙ СПИСОК -->
+    <div class="for-whom">
+        <div class="for-whom-title">ДЛЯ КОГО ЭТОТ САЙТ:</div>
+        <ul class="audience-list">
+            <li>Для детей и подростков с аутизмом (РАС), которым трудно планировать свой день</li>
+            <li>Для тех, кто теряется при большом количестве информации</li>
+            <li>Для людей, которым нужна четкая структура и предсказуемость</li>
+            <li>Для тех, кто быстро устает от сложных интерфейсов</li>
+            <li>Для людей с сенсорной чувствительностью</li>
+            <li>Для тех, кому важна стабильность и отсутствие сюрпризов</li>
+        </ul>
+    </div>
+    
+    <!-- 4. КЛЮЧЕВЫЕ ПРИНЦИПЫ ДИЗАЙНА -->
+    <div class="principles">
+        <div class="principle-item">
+            <div class="principle-title">ПРИНЦИП 1: МАКСИМАЛЬНАЯ ПРОСТОТА</div>
+            <div class="principle-description">
+                Мы зделали удобный и понятный интерфейс
+                чтобы людям с аутизмом было комфортно
+            </div>
+        </div>
+        
+        <div class="principle-item">
+            <div class="principle-title">ПРИНЦИП 2: ПРЕДСКАЗУЕМОСТЬ</div>
+            <div class="principle-description">
+                Каждая кнопка всегда находится на одном месте. 
+                Ничего не меняется без предупреждения. 
+                Все действия имеют четкий и ожидаемый результат.
+            </div>
+        </div>
+        
+        <div class="principle-item">
+            <div class="principle-title">ПРИНЦИП 3: СЕНСОРНАЯ БЕЗОПАСНОСТЬ</div>
+            <div class="principle-description">
+                Черный текст на белом фоне для максимальной читаемости. 
+                Никаких мигающих элементов, резких звуков или неожиданных переходов. 
+                Все границы четко обозначены.
+            </div>
+        </div>
+    </div>
+    
+    <!-- 5. КНОПКИ ДЕЙСТВИЙ -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.location.href='register.html'">
+            Я ПОЛЬЗОВАТЕЛЬ С АУТИЗМОМ - НАЧАТЬ
+        </button>
+        <button class="action-btn" onclick="window.location.href='about.html'">
+            Я РОДСТВЕННИК ИЛИ СПЕЦИАЛИСТ - УЗНАТЬ БОЛЬШЕ
+        </button>
+        <button class="action-btn" onclick="window.location.href='test.html'">
+            ПРОЙТИ ТЕСТ 
+        </button>
+    </div>
+    
+    <!-- 6. ФУТЕР С ДИСКЛЕЙМЕРОМ -->
+    <div class="footer">
+        <div class="disclaimer">
+            ВНИМАНИЕ: Этот сайт разработан с учетом особенностей восприятия людей с аутизмом. 
+            Все элементы интерфейса статичны, контрастны и предсказуемы.
+        </div>
+        <p>© 2024 Помощник - специализированный сайт для взрослых с РАС</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Обучающая среда для детей с РАС</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 20px;
+    background: #f9f9f9;
+    color: #333;
+  }
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  select, input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .example-box {
+    border: 1px solid #ddd;
+    background: #f0f8ff;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .example-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+  }
+  .response-message {
+    margin-top: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Выберите тип РАС у ребенка</h1>
+
+  <label for="rasSelect">Тип РАС:</label>
+  <select id="rasSelect">
+    <option value="" disabled selected>-- Выберите --</option>
+    <option value="asperger">Синдром Аспергера</option>
+    <option value="childhood_autism">Детский аутизм</option>
+    <option value="pdd-nos">PDD-NOS (первазивное расстройство развития)</option>
+  </select>
+
+  <div class="example-box" id="exampleBox">
+    <!-- Здесь будет пример (текст или изображение) -->
+    Пожалуйста, выберите тип РАС
+  </div>
+
+  <label for="answerInput">Ваш ответ:</label>
+  <input type="text" id="answerInput" placeholder="Введите ответ" disabled />
+
+  <button id="submitBtn" disabled>Подтвердить ответ</button>
+
+  <div class="response-message" id="responseMessage"></div>
+</div>
+
+<script>
+  const rasSelect = document.getElementById('rasSelect');
+  const exampleBox = document.getElementById('exampleBox');
+  const answerInput = document.getElementById('answerInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const responseMessage = document.getElementById('responseMessage');
+
+  // Примеры для каждого типа РАС
+  const examples = {
+    asperger: {
+      type: 'text',
+      content: 'Пример: Ребенок может испытывать трудности с пониманием шуток и иронии.'
+    },
+    childhood_autism: {
+      type: 'image',
+      content: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Autism_Awareness_Ribbon.svg/1200px-Autism_Awareness_Ribbon.svg.png',
+      alt: 'Символ аутизма'
+    },
+    'pdd-nos': {
+      type: 'text',
+      content: 'Пример: Ребенок проявляет задержки в развитии речи и социальных навыков.'
+    }
+  };
+
+  rasSelect.addEventListener('change', () => {
+    const selected = rasSelect.value;
+    responseMessage.textContent = '';
+    answerInput.value = '';
+    answerInput.disabled = false;
+    submitBtn.disabled = false;
+
+    const example = examples[selected];
+    if (!example) {
+      exampleBox.textContent = 'Пожалуйста, выберите тип РАС';
+      answerInput.disabled = true;
+      submitBtn.disabled = true;
+      return;
+    }
+
+    if (example.type === 'text') {
+      exampleBox.innerHTML = `<p>${example.content}</p>`;
+    } else if (example.type === 'image') {
+      exampleBox.innerHTML = `<img src="${example.content}" alt="${example.alt}" />`;
+    }
+  });
+
+  submitBtn.addEventListener('click', () => {
+    const answer = answerInput.value.trim();
+    if (!answer) {
+      responseMessage.style.color = 'red';
+      responseMessage.textContent = 'Пожалуйста, введите ответ.';
+      return;
+    }
+    // Здесь можно добавить логику проверки ответа
+    responseMessage.style.color = 'green';
+    responseMessage.textContent = 'Ответ принят. Спасибо!';
+    answerInput.value = '';
+    submitBtn.disabled = true;
+    answerInput.disabled = true;
+  });
+</script>
+
+</body>
+</html>
+4

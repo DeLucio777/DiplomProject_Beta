@@ -1,195 +1,269 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Помощник - для людей с аутизмом</title>
-    <style>
-        /* 1. СБРОС И ФОН */
-        * { margin: 0; padding: 0; }
-        
-        body { 
-            font-family: Arial, sans-serif;
-            color: #000000;
-            line-height: 1.6;
-            height: 100vh;
-            background: #ffffff;
-        }
-        
-        /* 2. КНОПКИ В ШАПКЕ */
-        .header-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #dee2e6;
-        }
-        
-        .header-btn {
-            padding: 12px 28px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .login-btn {
-            background: #ffffff;
-            color: #000000;
-            border: 2px solid #000000;
-        }
-        
-        .register-btn {
-            background: #000000;
-            color: #ffffff;
-            border: 2px solid #000000;
-        }
-        
-        /* 3. ЗАГОЛОВОК С ПОЯСНЕНИЕМ */
-        .title-container {
-            text-align: center;
-            margin-top: 60px;
-            padding: 0 20px;
-        }
-        
-        .title {
-            font-size: 48px;
-            margin-bottom: 10px;
-            color: #000000;
-            font-weight: bold;
-        }
-        
-        .target-audience {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: #000000;
-            background: #ffffcc;
-            padding: 15px;
-            border: 2px solid #000000;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: bold;
-        }
-        
-        /* 4. КЛЮЧЕВЫЕ ПРИНЦИПЫ */
-        .principles {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .principle-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            border: 2px solid #000000;
-            border-radius: 6px;
-            background: #f8f9fa;
-        }
-        
-        .principle-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #000000;
-        }
-        
-        .principle-description {
-            color: #000000;
-            line-height: 1.5;
-        }
-        
-        /* 5. ДЛЯ КОГО ЭТОТ САЙТ - ЯСНЫЙ СПИСОК */
-        .for-whom {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 30px;
-            border: 3px solid #000000;
-            background: #f0f8ff;
-        }
-        
-        .for-whom-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #000000;
-            text-decoration: underline;
-        }
-        
-        .audience-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .audience-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            color: #000000;
-            font-weight: bold;
-        }
-        
-        .audience-list li:before {
-            content: "•";
-            color: #000000;
-            font-size: 24px;
-            position: absolute;
-            left: 0;
-            top: -5px;
-        }
-        
-        /* 6. КНОПКИ ДЕЙСТВИЙ */
-        .action-buttons {
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .action-btn {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border: 3px solid #000000;
-            background: #ffffff;
-            color: #000000;
-            cursor: pointer;
-            margin: 0 10px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .action-btn:hover {
-            background: #000000;
-            color: #ffffff;
-        }
-        
-        /* 7. ФУТЕР */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-top: 2px solid #dee2e6;
-            color: #000000;
-            font-weight: bold;
-        }
-        
-        .disclaimer {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 15px;
-            background: #fffacd;
-            border: 2px solid #000000;
-            font-weight: bold;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Помощник - для людей с аутизмом</title>
+<style>
+    /* 1. СБРОС И ФОН */
+    * { margin: 0; padding: 0; }
+    
+    body { 
+        font-family: Arial, sans-serif;
+        color: #000000;
+        line-height: 1.6;
+        height: 100vh;
+        background: #ffffff;
+    }
+    
+    /* 2. КНОПКИ В ШАПКЕ */
+    .header-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        align-items: center;
+    }
+    
+    .header-btn, .user-name, .logout-btn {
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 6px;
+        padding: 12px 28px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .header-btn.login-btn {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #000000;
+    }
+    
+    .header-btn.register-btn {
+        background: #000000;
+        color: #ffffff;
+        border: 2px solid #000000;
+    }
+
+    .user-name {
+        color: #000000;
+        border: 2px solid transparent;
+        background: transparent;
+        cursor: default;
+        padding: 12px 20px;
+        user-select: none;
+    }
+
+    .logout-btn {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #000000;
+        margin-left: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .logout-btn:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    /* 3. ЗАГОЛОВОК С ПОЯСНЕНИЕМ */
+    .title-container {
+        text-align: center;
+        margin-top: 60px;
+        padding: 0 20px;
+    }
+    
+    .title {
+        font-size: 48px;
+        margin-bottom: 10px;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .target-audience {
+        font-size: 20px;
+        margin-bottom: 40px;
+        color: #000000;
+        background: #ffffcc;
+        padding: 15px;
+        border: 2px solid #000000;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: bold;
+    }
+    
+    /* 4. КЛЮЧЕВЫЕ ПРИНЦИПЫ */
+    .principles {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .principle-item {
+        margin-bottom: 25px;
+        padding: 20px;
+        border: 2px solid #000000;
+        border-radius: 6px;
+        background: #f8f9fa;
+    }
+    
+    .principle-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #000000;
+    }
+    
+    .principle-description {
+        color: #000000;
+        line-height: 1.5;
+    }
+    
+    /* 5. ДЛЯ КОГО ЭТОТ САЙТ - ЯСНЫЙ СПИСОК */
+    .for-whom {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        border: 3px solid #000000;
+        background: #f0f8ff;
+    }
+    
+    .for-whom-title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: #000000;
+        text-decoration: underline;
+    }
+    
+    .audience-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .audience-list li {
+        margin-bottom: 15px;
+        padding-left: 30px;
+        position: relative;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .audience-list li:before {
+        content: "•";
+        color: #000000;
+        font-size: 24px;
+        position: absolute;
+        left: 0;
+        top: -5px;
+    }
+    
+    /* 6. КНОПКИ ДЕЙСТВИЙ */
+    .action-buttons {
+        text-align: center;
+        margin: 40px 0;
+    }
+    
+    .action-btn {
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 3px solid #000000;
+        background: #ffffff;
+        color: #000000;
+        cursor: pointer;
+        margin: 0 10px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .action-btn:hover {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    /* 7. ФУТЕР */
+    .footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-top: 2px solid #dee2e6;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .disclaimer {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 15px;
+        background: #fffacd;
+        border: 2px solid #000000;
+        font-weight: bold;
+    }
+
+    /* Горизонтальный скролл контейнер тестов */
+    .tests-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 10px 20px;
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      scroll-behavior: smooth;
+    }
+    .test-card {
+      flex: 0 0 300px;
+      border: 2px solid #000000;
+      border-radius: 8px;
+      background: #f8f9fa;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .test-card:hover {
+      background-color: #e0e0e0;
+    }
+    .test-card h3 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000000;
+    }
+    .test-card p {
+      font-size: 16px;
+      color: #000000;
+      line-height: 1.4;
+    }
+    .tests-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .tests-container::-webkit-scrollbar-track {
+      background: #f0f0f0;
+    }
+    .tests-container::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+</style>
 </head>
 <body>
     <!-- 1. КНОПКИ ВВЕРХУ -->
-    <div class="header-buttons">
-        <a href="authoris.html" class="header-btn login-btn">ВОЙТИ</a>
-        <a href="register.html" class="header-btn register-btn">РЕГИСТРАЦИЯ</a>
+    <div class="header-buttons" id="headerButtons">
+        <a href="authoris.html" class="header-btn login-btn" id="loginBtn">ВОЙТИ</a>
+        <a href="register.html" class="header-btn register-btn" id="registerBtn">РЕГИСТРАЦИЯ</a>
     </div>
     
     <!-- 2. ЗАГОЛОВОК С ЯСНЫМ ОПИСАНИЕМ -->
@@ -198,6 +272,25 @@
         <div class="target-audience">
             ЭТОТ САЙТ СОЗДАН СПЕЦИАЛЬНО ДЛЯ ДЕТЕЙ И ПОДРОСТКОВ С АУТИЗМОМ
         </div>
+    </div>
+
+    <!-- Новый контейнер с тестами -->
+    <div class="tests-container" aria-label="Список тестов">
+      <div class="test-card" tabindex="0" onclick="location.href='test_task.html'">
+        <h3>Тест на планирование дня</h3>
+        <p>Помогает детям и подросткам с аутизмом научиться планировать свой день и управлять временем.</p>
+        <p><strong>Для кого:</strong> дети и подростки с РАС, испытывающие трудности с организацией.</p>
+      </div>
+      <div class="test-card" tabindex="0" onclick="location.href='test_task.html'">
+        <h3>Тест на сенсорную чувствительность</h3>
+        <p>Оценивает уровень сенсорной чувствительности и помогает подобрать комфортные условия.</p>
+        <p><strong>Для кого:</strong> люди с повышенной сенсорной чувствительностью.</p>
+      </div>
+      <div class="test-card" tabindex="0" onclick="location.href='test_task.html'">
+        <h3>Тест на социальные навыки</h3>
+        <p>Помогает выявить сильные и слабые стороны в общении и взаимодействии с окружающими.</p>
+        <p><strong>Для кого:</strong> дети и подростки, желающие улучшить социальные навыки.</p>
+      </div>
     </div>
     
     <!-- 3. ДЛЯ КОГО ЭТОТ САЙТ - ЧЕТКИЙ СПИСОК -->
@@ -246,7 +339,6 @@
     <div class="action-buttons">
         <a href="register.html" class="action-btn">Я ПОЛЬЗОВАТЕЛЬ С АУТИЗМОМ - НАЧАТЬ</a>
         <a href="about.html" class="action-btn">Я РОДСТВЕННИК ИЛИ СПЕЦИАЛИСТ - УЗНАТЬ БОЛЬШЕ</a>
-        <a href="test_task.html" class="action-btn">ПРОЙТИ ТЕСТ</a>
     </div>
     
     <!-- 6. ФУТЕР С ДИСКЛЕЙМЕРОМ -->
@@ -257,5 +349,43 @@
         </div>
         <p>© 2024 Помощник - специализированный сайт для взрослых с РАС</p>
     </div>
+
+<script>
+  // При загрузке страницы проверяем localStorage
+  document.addEventListener('DOMContentLoaded', () => {
+    const userData = localStorage.getItem('currentUser');
+    const headerButtons = document.getElementById('headerButtons');
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+
+    if (userData) {
+      const user = JSON.parse(userData);
+
+      // Скрываем кнопки Войти и Регистрация
+      loginBtn.style.display = 'none';
+      registerBtn.style.display = 'none';
+
+      // Создаем элемент с именем пользователя
+      const userNameElem = document.createElement('div');
+      userNameElem.className = 'user-name';
+      userNameElem.textContent = user.username;
+
+      // Создаем кнопку выхода
+      const logoutBtn = document.createElement('button');
+      logoutBtn.className = 'logout-btn';
+      logoutBtn.textContent = 'Выйти';
+
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('currentUser');
+        // Перезагружаем страницу, чтобы обновить интерфейс
+        location.reload();
+      });
+
+      headerButtons.appendChild(userNameElem);
+      headerButtons.appendChild(logoutBtn);
+    }
+  });
+</script>
+
 </body>
 </html>

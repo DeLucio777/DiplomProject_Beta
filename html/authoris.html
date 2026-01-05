@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Авторизация пользователя</title>
 <style>
-  /* Сброс и базовые стили */
   * { margin: 0; padding: 0; }
   body {
     font-family: Arial, sans-serif;
@@ -15,7 +14,6 @@
     background: #ffffff;
     min-height: 100vh;
   }
-  /* Хедер с ссылками */
   .header {
     display: flex;
     align-items: center;
@@ -39,7 +37,6 @@
     color: #ffffff;
     border-color: #000000;
   }
-  /* Контейнер формы */
   .container {
     max-width: 500px;
     margin: 50px auto;
@@ -101,6 +98,12 @@
   .link-container a:hover {
     border-color: #000000;
   }
+  #message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -111,7 +114,7 @@
 
 <div class="container">
   <h1>Авторизация</h1>
-  <form action="#" method="post">
+  <form id="loginForm">
     <label for="username">Имя пользователя</label>
     <input type="text" id="username" name="username" required />
 
@@ -123,7 +126,50 @@
   <div class="link-container">
     Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
   </div>
+  <div id="message"></div>
 </div>
+
+<script>
+  const form = document.getElementById('loginForm');
+  const messageDiv = document.getElementById('message');
+
+  function getUsers() {
+    const users = localStorage.getItem('users');
+    return users ? JSON.parse(users) : [];
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    messageDiv.style.color = 'red';
+    messageDiv.textContent = '';
+
+    const username = form.username.value.trim();
+    const password = form.password.value;
+
+    if (!username || !password) {
+      messageDiv.textContent = 'Пожалуйста, заполните все поля.';
+      return;
+    }
+
+    const users = getUsers();
+    const user = users.find(u => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+
+    if (!user) {
+      messageDiv.textContent = 'Неверное имя пользователя или пароль.';
+      return;
+    }
+
+    // Сохраняем данные пользователя в localStorage (без пароля)
+    localStorage.setItem('currentUser', JSON.stringify({ username: user.username, email: user.email }));
+
+    messageDiv.style.color = 'green';
+    messageDiv.textContent = `Добро пожаловать, ${user.username}!`;
+
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1500);
+  });
+</script>
 
 </body>
 </html>

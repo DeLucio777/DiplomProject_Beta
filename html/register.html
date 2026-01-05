@@ -1,4 +1,4 @@
-<!-- registration.html -->
+<!-- register.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Регистрация пользователя</title>
 <style>
-  /* Сброс и базовые стили */
   * { margin: 0; padding: 0; }
   body {
     font-family: Arial, sans-serif;
@@ -15,7 +14,6 @@
     background: #ffffff;
     min-height: 100vh;
   }
-  /* Хедер с ссылками */
   .header {
     display: flex;
     align-items: center;
@@ -39,7 +37,6 @@
     color: #ffffff;
     border-color: #000000;
   }
-  /* Контейнер формы */
   .container {
     max-width: 500px;
     margin: 50px auto;
@@ -102,6 +99,12 @@
   .link-container a:hover {
     border-color: #000000;
   }
+  #message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -112,22 +115,75 @@
 
 <div class="container">
   <h1>Регистрация</h1>
-  <form action="#" method="post">
+  <form id="registerForm">
     <label for="username">Имя пользователя</label>
-    <input type="text" id="username" name="username" required />
+    <input type="text" id="username" name="username" required minlength="3" />
 
     <label for="email">Электронная почта</label>
     <input type="email" id="email" name="email" required />
 
     <label for="password">Пароль</label>
-    <input type="password" id="password" name="password" required />
+    <input type="password" id="password" name="password" required minlength="6" />
 
     <button type="submit">Зарегистрироваться</button>
   </form>
   <div class="link-container">
     Уже есть аккаунт? <a href="authoris.html">Войти</a>
   </div>
+  <div id="message"></div>
 </div>
+
+<script>
+  const form = document.getElementById('registerForm');
+  const messageDiv = document.getElementById('message');
+
+  function getUsers() {
+    const users = localStorage.getItem('users');
+    return users ? JSON.parse(users) : [];
+  }
+
+  function saveUsers(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    messageDiv.style.color = 'red';
+    messageDiv.textContent = '';
+
+    const username = form.username.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value;
+
+    // Валидация
+    if (username.length < 3) {
+      messageDiv.textContent = 'Имя пользователя должно быть не менее 3 символов.';
+      return;
+    }
+    if (!email.includes('@') || email.length < 5) {
+      messageDiv.textContent = 'Введите корректный email.';
+      return;
+    }
+    if (password.length < 6) {
+      messageDiv.textContent = 'Пароль должен быть не менее 6 символов.';
+      return;
+    }
+
+    const users = getUsers();
+
+    if (users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
+      messageDiv.textContent = 'Пользователь с таким именем уже существует.';
+      return;
+    }
+
+    users.push({ username, email, password });
+    saveUsers(users);
+
+    messageDiv.style.color = 'green';
+    messageDiv.textContent = 'Регистрация прошла успешно! Теперь вы можете войти.';
+    form.reset();
+  });
+</script>
 
 </body>
 </html>

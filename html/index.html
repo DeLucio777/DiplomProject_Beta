@@ -155,6 +155,8 @@
             color: #000000;
             cursor: pointer;
             margin: 0 10px;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .action-btn:hover {
@@ -186,12 +188,8 @@
 <body>
     <!-- 1. КНОПКИ ВВЕРХУ -->
     <div class="header-buttons">
-        <button class="header-btn login-btn" onclick="window.location.href='login.html'">
-            ВОЙТИ
-        </button>
-        <button class="header-btn register-btn" onclick="window.location.href='register.html'">
-            РЕГИСТРАЦИЯ
-        </button>
+        <a href="authoris.html" class="header-btn login-btn">ВОЙТИ</a>
+        <a href="register.html" class="header-btn register-btn">РЕГИСТРАЦИЯ</a>
     </div>
     
     <!-- 2. ЗАГОЛОВОК С ЯСНЫМ ОПИСАНИЕМ -->
@@ -246,15 +244,9 @@
     
     <!-- 5. КНОПКИ ДЕЙСТВИЙ -->
     <div class="action-buttons">
-        <button class="action-btn" onclick="window.location.href='register.html'">
-            Я ПОЛЬЗОВАТЕЛЬ С АУТИЗМОМ - НАЧАТЬ
-        </button>
-        <button class="action-btn" onclick="window.location.href='about.html'">
-            Я РОДСТВЕННИК ИЛИ СПЕЦИАЛИСТ - УЗНАТЬ БОЛЬШЕ
-        </button>
-        <button class="action-btn" onclick="window.location.href='test.html'">
-            ПРОЙТИ ТЕСТ 
-        </button>
+        <a href="register.html" class="action-btn">Я ПОЛЬЗОВАТЕЛЬ С АУТИЗМОМ - НАЧАТЬ</a>
+        <a href="about.html" class="action-btn">Я РОДСТВЕННИК ИЛИ СПЕЦИАЛИСТ - УЗНАТЬ БОЛЬШЕ</a>
+        <a href="test_task.html" class="action-btn">ПРОЙТИ ТЕСТ</a>
     </div>
     
     <!-- 6. ФУТЕР С ДИСКЛЕЙМЕРОМ -->

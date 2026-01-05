@@ -1,0 +1,129 @@
+<!-- authoris.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Авторизация пользователя</title>
+<style>
+  /* Сброс и базовые стили */
+  * { margin: 0; padding: 0; }
+  body {
+    font-family: Arial, sans-serif;
+    color: #000000;
+    line-height: 1.6;
+    background: #ffffff;
+    min-height: 100vh;
+  }
+  /* Хедер с ссылками */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+  }
+  .header a {
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid transparent;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  .header a:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+  /* Контейнер формы */
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #000000;
+  }
+  h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+  }
+  button {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+    border: 3px solid #000000;
+    background: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  button:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .link-container {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+  }
+  .link-container a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .link-container a:hover {
+    border-color: #000000;
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html">Главная</a>
+</header>
+
+<div class="container">
+  <h1>Авторизация</h1>
+  <form action="#" method="post">
+    <label for="username">Имя пользователя</label>
+    <input type="text" id="username" name="username" required />
+
+    <label for="password">Пароль</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">Войти</button>
+  </form>
+  <div class="link-container">
+    Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+  </div>
+</div>
+
+</body>
+</html>
